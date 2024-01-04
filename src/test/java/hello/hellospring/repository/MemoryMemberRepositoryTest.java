@@ -12,11 +12,6 @@ import static org.assertj.core.api.Assertions.*;
 public class MemoryMemberRepositoryTest {
     MemoryMemberRepository repository = new MemoryMemberRepository();
 
-    @AfterEach
-    public void afterEach(){
-        repository.clearStore();    //하나의 테스트 끝날 때마다 클리어
-    }
-
     @Test
     public void save() {
         Member member = new Member();
@@ -42,6 +37,11 @@ public class MemoryMemberRepositoryTest {
         Member result = repository.findByName("spring1").get();
 
         assertThat(result).isEqualTo(member1);
+    }
+
+    @AfterEach
+    public void afterEach(){
+        repository.clearStore();    //하나의 테스트 끝날 때마다 클리어
     }
 
     @Test
